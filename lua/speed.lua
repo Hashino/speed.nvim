@@ -82,7 +82,9 @@ function Speed.setup(opts)
 
   vim.on_key(
     function(_, _)
-      Speed.update()
+      if Speed.enabled then
+        Speed.update()
+      end
     end,
     vim.api.nvim_create_namespace("speed_keypress")
   )

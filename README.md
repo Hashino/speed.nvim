@@ -10,3 +10,6 @@ with lazy.nvim
     opts = {},
 }
 ```
+
+## Commands
+- `:Speed toggle` toggles the plugin

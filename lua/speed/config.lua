@@ -6,8 +6,11 @@ local WIDTH = 13
 ---@class SpeedOptions
 ---@field enabled boolean wether plugin is enabled
 ---@field edit_win_config table window config for the edit window
+---@field float_buffer boolean whether to use a floating buffer for display
 Config.default_opts = {
   enabled = true,
+
+  float_buffer = true,
 
   -- window configs of the floating tasks editor
   -- see :h nvim_open_win() for available options

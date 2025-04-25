@@ -34,10 +34,13 @@ end
 
 function Speed.toggle()
   Speed.enabled = not Speed.enabled
-  if Speed.enabled then
-    Speed.open()
-  else
-    Speed.close()
+
+  if config.options.float_buffer then
+    if Speed.enabled then
+      Speed.open()
+    else
+      Speed.close()
+    end
   end
 end
 
@@ -66,9 +69,17 @@ function Speed.update()
 
   table.insert(Speed.keypressess, curr_time)
 
-  vim.api.nvim_buf_set_lines(Speed.buf, 0, -1, false, {
-    " " .. (#Speed.keypressess / 5) .. " keys/s",
-  })
+  if config.options.float_buffer then
+    vim.api.nvim_buf_set_lines(Speed.buf, 0, -1, false, {
+      " " .. (#Speed.keypressess / 5) .. " keys/s",
+    })
+  end
+
+  vim.api.nvim_exec_autocmds("User", { pattern = "SpeedUpdate", })
+end
+
+function Speed.current()
+  return Speed.enabled and (#Speed.keypressess / 5) .. " keys/s" or ""
 end
 
 ---@param opts SpeedOptions
@@ -76,9 +87,11 @@ function Speed.setup(opts)
   config.options = vim.tbl_deep_extend("force", config.default_opts, opts or {})
   Speed.enabled = config.options.enabled
 
-  vim.api.nvim_create_autocmd({ "BufEnter", }, {
-    callback = Speed.open,
-  })
+  if config.options.float_buffer then
+    vim.api.nvim_create_autocmd({ "BufEnter", }, {
+      callback = Speed.open,
+    })
+  end
 
   vim.on_key(
     function(_, _)

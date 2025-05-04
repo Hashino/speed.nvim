@@ -1,4 +1,16 @@
+<div align="right">
+  <a href="https://www.buymeacoffee.com/Hashino" target="_blank">
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" 
+    alt="Buy Me A Coffee" style="height: 24px !important;width: 104px !important;" >
+  </a>
+</div>
+
 # speed.nvim
+
+<a href="https://dotfyle.com/plugins/Hashino/speed.nvim">
+	<img src="https://dotfyle.com/plugins/Hashino/speed.nvim/shield?style=flat" />
+</a>
+
 keyboard speedometer for neovim
 
 https://github.com/user-attachments/assets/42f5b239-3b2a-4394-ba32-c3314a8a2a01
